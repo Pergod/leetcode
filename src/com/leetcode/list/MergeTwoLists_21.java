@@ -2,10 +2,10 @@ package com.leetcode.list;
 
 public class MergeTwoLists_21 {
 	
-	 public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+	 public ListNode1 mergeTwoLists(ListNode1 l1, ListNode1 l2) {
 		 // из╠Ь
-		 ListNode prev = new ListNode(-1);
-		 ListNode head = prev;
+		 ListNode1 prev = new ListNode1(-1);
+		 ListNode1 head = prev;
 		 while (l1 != null && l2 != null) {
 			if (l1.val <= l2.val) {
 				prev.next = l1;

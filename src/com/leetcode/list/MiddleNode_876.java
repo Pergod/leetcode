@@ -1,8 +1,8 @@
 package com.leetcode.list;
 
 public class MiddleNode_876 {
-	public ListNode middleNode(ListNode head) {
-		ListNode first = head;
+	public ListNode1 middleNode(ListNode1 head) {
+		ListNode1 first = head;
 		int size = 0;
 		while (first != null) {
 			++ size;

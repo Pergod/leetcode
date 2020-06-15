@@ -151,7 +151,8 @@ public class SkipList {
 		private int data = -1;
 		// 当前节点在每一层的next节点数组
 		// 结合图示理解https://juejin.im/post/57fa935b0e3dd90057c50fbc
-		// 每个节点下面会存在多个指针
+		// 每个节点可能下面会存在多个指针
+		// 每个层级的指针个数不同，层级越高，指针越多
 		private Node nextNodes[] = new Node[MAX_LEVEL];
 		private int maxLevel = 0;
 

@@ -10,11 +10,14 @@ public class BM {
 	// 全局变量或成员变量
 	private static final int SIZE = 256;
 
-	// a	主串
-	// b	模式串
-	// n	主串的长度
-	// m	模式串的长度。
-	public int bm(char[] a, int n, char[] b, int m) {
+	/**
+	 * @param a			主串
+	 * @param n			主串的长度
+	 * @param b			模式串
+	 * @param m			模式串的长度。
+	 * @return
+	 */
+	public static int bm(char[] a, int n, char[] b, int m) {
 		// 记录模式串中每个字符最后出现的位置
 		int[] bc = new int[SIZE]; 
 		// 构建坏字符哈希表
@@ -45,13 +48,20 @@ public class BM {
 				// 如果有好后缀的话
 				y = moveByGS(j, m, suffix, prefix);
 			}
+			// 比较坏字符和好后缀，取最大的作为要移动的位数
 			i = i + Math.max(x, y);
 		}
 		return -1;
 	}
 
-	// j表示坏字符对应的模式串中的字符下标; m表示模式串长度
-	private int moveByGS(int j, int m, int[] suffix, boolean[] prefix) {
+	/**
+	 * @param j				坏字符对应的模式串中的字符下标
+	 * @param m				模式串长度
+	 * @param suffix
+	 * @param prefix
+	 * @return
+	 */
+	private static int moveByGS(int j, int m, int[] suffix, boolean[] prefix) {
 		int k = m - 1 - j; // 好后缀长度
 		if (suffix[k] != -1)
 			return j - suffix[k] + 1;
@@ -64,14 +74,16 @@ public class BM {
 	}
 
 	/**
+	 * 填充suffix数组与prefix数组
 	 * 1. 在模式串中，查找跟好后缀匹配的另一个子串
 	 * 2. 在好后缀的后缀子串中，查找最长的、能跟模式串前缀子串匹配的后缀子串
 	 * @param b			模式串
 	 * @param m			长度
-	 * @param suffix	suffix 数组的下标 k，表示后缀子串的长度，下标对应的数组值存储的是，在模式串中跟好后缀{u}相匹配的子串{u*}的起始下标值
+	 * @param suffix	suffix 数组的下标 k，表示后缀子串的长度
+	 * 					下标对应的数组值存储的是，在模式串中跟好后缀{u}相匹配的子串{u*}的起始下标值
 	 * @param prefix	来记录模式串的后缀子串是否能匹配模式串的前缀子串
 	 */
-	private void generateGS(char[] b, int m, int[] suffix, boolean[] prefix) {
+	private static void generateGS(char[] b, int m, int[] suffix, boolean[] prefix) {
 		// 初始化
 		for (int i = 0; i < m; ++i) { 
 			suffix[i] = -1;
@@ -80,23 +92,27 @@ public class BM {
 		// b[0, i]，也就是b[0,m-2]
 		for (int i = 0; i < m - 1; ++i) { 
 			int j = i;
-			int k = 0; // 公共后缀子串长度
-			while (j >= 0 && b[j] == b[m - 1 - k]) { // 与b[0, m-1]求公共后缀子串
+			// 公共后缀子串长度
+			int k = 0;
+			// 与b[0, m-1]求公共后缀子串
+			while (j >= 0 && b[j] == b[m - 1 - k]) { 
 				--j;
 				++k;
 				// j+1表示公共后缀子串在b[0, i]中的起始下标
 				suffix[k] = j + 1; 
 			}
-			if (j == -1)
+			if (j == -1){
 				// 如果公共后缀子串也是模式串的前缀子串
 				prefix[k] = true; 
+			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		char a = 'a';
-		int c = a;
-		System.out.println(c);
+		char[] a = new char[]{'c','a','b','c','a','b'};
+		int[] suffix = new int[6];
+		boolean[] prefix = new boolean[6];
+		generateGS(a,a.length,suffix,prefix);
 	}
 
 	/**
@@ -105,7 +121,7 @@ public class BM {
 	 * @param m		模式串的长度
 	 * @param bc	散列表
 	 */
-	private void generateBC(char[] b, int m, int[] bc) {
+	private static void generateBC(char[] b, int m, int[] bc) {
 		// 初始化bc
 		for (int i = 0; i < SIZE; ++i) {
 			bc[i] = -1; 

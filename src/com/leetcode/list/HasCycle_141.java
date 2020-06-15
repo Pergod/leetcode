@@ -11,8 +11,8 @@ public class HasCycle_141 {
 	 * @param head
 	 * @return
 	 */
-	public static boolean hasCycle(ListNode head) {
-		Set<ListNode> set = new HashSet<ListNode>();
+	public static boolean hasCycle(ListNode1 head) {
+		Set<ListNode1> set = new HashSet<ListNode1>();
 		while (head != null) {
 			if (set.contains(head)) {
 				return true;
@@ -29,13 +29,13 @@ public class HasCycle_141 {
 	 * @param head
 	 * @return
 	 */
-	public static boolean hasCycle2(ListNode head) {
+	public static boolean hasCycle2(ListNode1 head) {
 		if (head == null || head.next == null) {
 			return false;
 		}
 		// *
-		ListNode quick = head.next;
-		ListNode slow = head;
+		ListNode1 quick = head.next;
+		ListNode1 slow = head;
 		// 快慢相遇
 		while (slow != quick) {
 			// 快指针最先到达null
